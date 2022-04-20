@@ -1,6 +1,12 @@
 # ibm-kafka-may-2022
 IBM Kafka Training May 2022 
 
+### System Requirement 
+- System with 8 GB 
+- Hypervisor Support to test with docker 
+- abount 50 GB free space 
+- Operating System Mac / Windows / Linux
+- Open internet access 
 
 
 ### Step 1 
