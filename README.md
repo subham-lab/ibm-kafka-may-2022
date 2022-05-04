@@ -101,3 +101,31 @@ Why we need ESB
 
 - by default every message is kept for 1 week 
 - when you create a topic by default there shall be 1 partition 
+- kafka 2.x - zookeeper is mandatory 
+- kafka 3.x - zookeeper is not mandatory - there is another tool called raft for kafka which is called kraft
+- kafka 4.x - zookeeper shall be removed 
+
+
+Step to start kafka 
+
+> zookeeper-server-start.sh /Volumes/Kanchan/Softwares/kafka/kafka-3.1.0/config/zookeeper.properties
+
+> kafka-server-start.sh /Volumes/Kanchan/Softwares/kafka/kafka-3.1.0/config/server.properties
+
+> kafka-server-start.sh ../../config/server.properties 
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --list 
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --describe  (describe all the topics)
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic ibm-first-topic  (describe specific topic)
+
+> kafka-console-producer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic --from-beginning 
+
+
+
+
