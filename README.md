@@ -116,6 +116,8 @@ Step to start kafka
 
 > kafka-topics.sh --bootstrap-server localhost:9092 --list 
 
+> kafka-topics.sh --bootstrap-server localhost:9092 --create --topic first-topic
+
 > kafka-topics.sh --bootstrap-server localhost:9092 --describe  (describe all the topics)
 
 > kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic ibm-first-topic  (describe specific topic)
@@ -128,4 +130,57 @@ Step to start kafka
 
 
 
+
+- producer sending messages with key 
+
+> kafka-console-producer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic --property parse.key=true --property key.separator=:
+
+```
+    somekey:somevalue
+    ritika:12345
+```
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic --property parse.key=true --property key.separator=:  (this consumer shall not print the key values FYI)
+
+
+
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic --property parse.key=true --property key.separator=: --property print.key=true --property  print.timestamp=true --formatter kafka.tools.DefaultMessageFormatter
+
+
+
+
+## to whow working with partitions 
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --create --topic ibm-second-topic --partitions 3 
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic ibm-second-topic 
+
+- consumer + consumer groups 
+
+```
+- $ kafka-console-consumer.sh - --group <String: consumer group id>      The consumer group id of the consumer.
+
+- $ kafka-consumer-groups.sh - --group <String: consumer group id>      The consumer group id of the consumer.
+
+```
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-first-topic --group my-first-group 
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --topic ibm-second-topic --describe 
+
+> kafka-console-producer.sh --bootstrap-server localhost:9092 --topic ibm-second-topic 
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-second-topic 
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-second-topic --group p-first-group
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-second-topic --group p-second-group
+
+
+-- how uber work 
+-- swiggy works 
+-- netflix works 
+
+- reset the offset vales when we read 
+- start kafka without zookeeper 
 
