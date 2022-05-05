@@ -176,11 +176,37 @@ Step to start kafka
 
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic ibm-second-topic --group p-second-group
 
-
 -- how uber work 
 -- swiggy works 
 -- netflix works 
 
 - reset the offset vales when we read 
+
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group p-first-group --reset-offsets  --to-earliest --execute --topic ibm-second-topic
+
+
+
 - start kafka without zookeeper 
+
+
+
+--- 
+
+# Day 2 
+- Working with program - Java 
+    - producer 
+    - consumer 
+    - working with groups
+    - rebalancing 
+
+### Software list 
+- Java 11 
+- IDE - Eclipse / Itellij / VCode 
+
+- Single Node Single Cluster  (1 Zookeeper, 1 Kafka) 
+- Single Node Multi Cluster (1 Zookeepr, N Kafka)
+- Multi Node Multi Cluster (M zookeepr, N Kafka)
+
+- start kafka without zookeeper 
+
 
