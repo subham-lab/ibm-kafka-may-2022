@@ -203,10 +203,23 @@ Step to start kafka
 - Java 11 
 - IDE - Eclipse / Itellij / VCode 
 
+- you can create a core project (not a good option)
+- create a maven project / gradle 
+
 - Single Node Single Cluster  (1 Zookeeper, 1 Kafka) 
 - Single Node Multi Cluster (1 Zookeepr, N Kafka)
 - Multi Node Multi Cluster (M zookeepr, N Kafka)
 
 - start kafka without zookeeper 
+
+
+
+
+https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html
+
+-- the replication factor of more than 1 will not work till you have n number of brokers >1 
+$ kafka-topics.sh --bootstrap-server localhost:9092 --create --topic ibm-java-topic --replication-factor 1
+
+
 
 
