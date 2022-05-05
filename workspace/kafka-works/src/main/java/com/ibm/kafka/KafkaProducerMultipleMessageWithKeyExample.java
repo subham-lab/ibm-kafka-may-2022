@@ -34,7 +34,7 @@ public class KafkaProducerMultipleMessageWithKeyExample {
 		for(int i=0; i<10; i++) {
 		
 			String topic = "ibm-second-topic"; 
-			String value =  "Hello World " + i;
+			String value =  "Hello World For Consumer " + i;
 			String key = "id_" + Integer.toString(i);
 
 			ProducerRecord<String, String> producerRecord = 

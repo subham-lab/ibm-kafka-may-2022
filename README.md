@@ -312,7 +312,6 @@ Partition 2
 Key id_2
 Value  Hello World 2
 
-
 Partition 2
 Key id_4
 Value  Hello World 4
@@ -339,3 +338,11 @@ Key id_8
 Value  Hello World 8
 
 
+while(true) {
+    keep getting the messages 
+    will get the message with the smallest possible time ms/Ms/ps
+}
+
+
+To discuss on day 3 
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
