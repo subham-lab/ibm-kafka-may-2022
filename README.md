@@ -291,3 +291,51 @@ Offset 85
 Partition 2
 Time Stamp Thu May 05 12:14:38 IST 2022
 Offset 86
+
+
+-- with keys 
+
+
+Partition 0
+Key id_1
+Value  Hello World 1
+
+Partition 0
+Key id_3
+Value  Hello World 3
+
+Partition 0
+Key id_6
+Value  Hello World 6
+
+Partition 2
+Key id_2
+Value  Hello World 2
+
+
+Partition 2
+Key id_4
+Value  Hello World 4
+
+
+Partition 2
+Key id_5
+Value  Hello World 5
+
+Partition 2
+Key id_7
+Value  Hello World 7
+
+Partition 2
+Key id_9
+Value  Hello World 9
+
+Partition 1
+Key id_0
+Value  Hello World 0
+
+Partition 1
+Key id_8
+Value  Hello World 8
+
+

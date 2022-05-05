@@ -13,9 +13,9 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class KafkaProducerMultipleMessageExample {
+public class KafkaProducerMultipleMessageWithKeyExample {
 	
-	private static final Logger log = LoggerFactory.getLogger(KafkaProducerMultipleMessageExample.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(KafkaProducerMultipleMessageWithKeyExample.class.getName());
 	
 	public static void main(String[] args) {
 	
@@ -33,21 +33,29 @@ public class KafkaProducerMultipleMessageExample {
 		
 		for(int i=0; i<10; i++) {
 		
-		ProducerRecord<String, String> producerRecord = 
-				new ProducerRecord<String, String>("ibm-second-topic", "Hello World " + i); 
-		
+			String topic = "ibm-second-topic"; 
+			String value =  "Hello World " + i;
+			String key = "id_" + Integer.toString(i);
+
+			ProducerRecord<String, String> producerRecord = 
+						new ProducerRecord<String, String>(topic, key, value);
+
 		
 		// if you want to send the data to particular partition 
 //		new ProducerRecord<K, V>(port, Partition, Key, Value)
 		
+			// anytime if you are using the callback by default it is async 
 		producer.send(producerRecord, ( metadata,  exception) ->  {
 				if(exception == null) {
 					// the record is sent to kafka and good
 					
 					log.info("------------------------------------------------"); 
 					log.info("Record sent Successfully"); 
-					log.info("Topic " + metadata.topic() +
+					log.info(
+							"Topic " + metadata.topic() +
 							"\nPartition " + metadata.partition() +
+							"\nKey " + producerRecord.key() +
+							"\nValue  " + producerRecord.value() +
 							"\nTime Stamp " + new Date(metadata.timestamp() )+
 							"\nOffset " + metadata.offset());
 				}else {
