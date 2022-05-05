@@ -13,9 +13,9 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class KafkaProducerExample {
+public class KafkaProducerMultipleMessageExample {
 	
-	private static final Logger log = LoggerFactory.getLogger(KafkaProducerExample.class.getName());
+	private static final Logger log = LoggerFactory.getLogger(KafkaProducerMultipleMessageExample.class.getName());
 	
 	public static void main(String[] args) {
 	
@@ -23,7 +23,6 @@ public class KafkaProducerExample {
 		String port = "9092"; 
 		
 		Properties prop = new Properties(); 
-//		prop.put("bootstrap.servers", host+":"+port); 
 		
 		prop.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, host+":"+port); 
 		prop.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -31,13 +30,13 @@ public class KafkaProducerExample {
 		
 		KafkaProducer<String, String> producer = new KafkaProducer<String, String>(prop); 
 		
-		ProducerRecord<String, String> producerRecord = 
-				new ProducerRecord<String, String>("ibm-second-topic", "Hello World"); 
 		
-		producer.send(producerRecord, new Callback() {
-			
-			@Override
-			public void onCompletion(RecordMetadata metadata, Exception exception) {
+		for(int i=0; i<10; i++) {
+		
+		ProducerRecord<String, String> producerRecord = 
+				new ProducerRecord<String, String>("ibm-second-topic", "Hello World " + i); 
+		
+		producer.send(producerRecord, ( metadata,  exception) ->  {
 				if(exception == null) {
 					// the record is sent to kafka and good
 					
@@ -50,13 +49,18 @@ public class KafkaProducerExample {
 				}else {
 					log.error("Sorry! Error While Saving : "+ exception.getMessage());
 				}
+				
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
 			}
-		});
-		
-		// DefaultPartitioner from kafka 3.x is StickyPartitioner due to performance 
-//		DefaultPartitioner
-		
-		
+		);
+		 
+		} // end of for loop 
+
 		producer.flush();
 		
 		producer.close(); 

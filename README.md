@@ -221,5 +221,73 @@ https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer
 $ kafka-topics.sh --bootstrap-server localhost:9092 --create --topic ibm-java-topic --replication-factor 1
 
 
+## Steps for sending message from Java to Kafka 
+1. Create a Maven Project 
+2. Get dependincies 
+    2.1 Kafka Clients - pom.xml 
+    2.2 slf4j api + simple 
+3. Program 
+    3.1 Configuration - bootstrap server : 9092 and what kind of data are you sending key, value 
+    3.2 Producer - will take the configuration 
+    3.3 Generate a kafka record which shall have topic and message 
+    3.4 producer.send(record, callback) - callbacks are called implicitily by KafkaClient 
+    3.5 make sure you flush and close if not the connection to kafka is open 
+4. Kafka 
+    4.1 start zookeeper 
+    4.2 start kafka 
+    4.3 create a topic 
+5. Run your java program 
 
 
+Kafka uses Murmur 
+
+targetPartition = Math.abs(Utils.murmur2(keyBytes)) % (numPartitions - 1)
+
+
+
+
+
+
+
+
+
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 77 
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 78
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 79
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 80
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 81
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 82
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 83
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 84
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 85
+
+Partition 2
+Time Stamp Thu May 05 12:14:38 IST 2022
+Offset 86
