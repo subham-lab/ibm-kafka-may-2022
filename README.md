@@ -382,3 +382,75 @@ get the port number
 
 
 
+
+
+-- creating multi node multi cluster 
+
+
+- tickTime : the basic time unit in milliseconds used by ZooKeeper. It is used to do heartbeats and the minimum session timeout will be twice the tickTime.
+- The new entry, initLimit is timeouts ZooKeeper uses to limit the length of time the ZooKeeper 
+- The entry syncLimit limits how far out of date a server can be from a leader.
+
+
+Steps 1: 
+- in zookeeper.properites, create similar for zookeeper1, 2, 3 
+pls change clientPort and dataDir appropriately 
+```
+    dataDir=/tmp/tutorial/zookeeper-1
+
+
+    # the port at which the clients will connect
+
+    clientPort=2181
+
+    # disable the per-ip limit on the number of connections since this is a non-production config
+    maxClientCnxns=0
+    # Disable the adminserver by default to avoid port conflicts.
+    # Set the port to something non-conflicting if choosing to enable this
+    admin.enableServer=false
+    # admin.serverPort=8080
+
+    tickTime=2000
+    initLimit=5
+    syncLimit=2
+
+    server.1=127.0.0.1:2566:3566
+    server.2=127.0.0.1:2567:3567
+    server.3=127.0.0.1:2568:3568
+
+```
+
+- create a file called myid /tmp/tutorial/zookeeper-1 
+and put a value called 1 and similarly 2,3 for other zookeeper files 
+
+
+- start zookeeper 
+
+> zookeeper-server-start.sh ./config/zookeeper-1.properties 
+
+> zookeeper-server-start.sh ./config/zookeeper-2.properties 
+
+> zookeeper-server-start.sh ./config/zookeeper-3.properties 
+
+
+-- start kafka cluster before that change content of server-1.properties, server-2.properties, server-3.properties
+
+> zookeeper.connect=127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+
+> kafka-server-start.sh ./confic/server-1.properites 
+
+> kafka-server-start.sh ./confic/server-2.properites 
+
+> kafka-server-start.sh ./confic/server-3.properites 
+
+- create a topic 
+> kafka-topics.sh --create --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic test-topic-1 --replication-factor 3
+
+- create console producer 
+> kafka-console-producer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic test-topic-1
+
+- create console consumer 
+>  kafka-console-consumer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic test-topic-1
+
+- to test kill 1 of the zookeeper 
+- lsof -i:2181 | grep LISTEN
