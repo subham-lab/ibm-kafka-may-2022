@@ -346,3 +346,39 @@ while(true) {
 
 To discuss on day 3 
 	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+
+
+- To create Single Node Multi Cluster Arch 
+
+> zookeeper-server-start.sh /Volumes/Kanchan/Softwares/kafka/kafka-3.1.0/config/zookeeper.properties
+
+> kafka-server-start.sh /Volumes/Kanchan/Softwares/kafka/kafka-3.1.0/config/server-1.properties
+
+> kafka-server-start.sh /Volumes/Kanchan/Softwares/kafka/kafka-3.1.0/config/server-2.properties
+
+> kafka-server-start.sh /Volumes/Kanchan/Softwares/kafka/kafka-3.1.0/config/server-3.properties
+
+> kafka-topics.sh --create --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --replication-factor 3 --topic replica-topic
+
+> kafka-topics.sh --create --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --replication-factor 3 --topic replica-topic-p3 --partitions 3
+
+
+> kafka-topics.sh --create --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --replication-factor 1 --topic ibm-test-1
+
+>  kafka-console-producer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic replica-topic
+
+
+>  kafka-console-consumer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic replica-topic
+
+> lsof -i:9092 | grep LISTEN 
+get the port number 
+> kill -9 <port number>
+
+
+
+
+
+
+
+
+
