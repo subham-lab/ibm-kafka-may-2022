@@ -454,3 +454,18 @@ and put a value called 1 and similarly 2,3 for other zookeeper files
 
 - to test kill 1 of the zookeeper 
 - lsof -i:2181 | grep LISTEN
+
+
+
+
+--- 
+# Day 3 
+
+
+- Pull data from db and give it to consumer 
+- Start Kafka Without Zookeeper 
+- Working with Wikimedia - consuming large data 
+- Rebalancing with consumers - Java 
+- Metrics with Kafka 
+- spring boot application with kafka 
+- run docker with kafka 
