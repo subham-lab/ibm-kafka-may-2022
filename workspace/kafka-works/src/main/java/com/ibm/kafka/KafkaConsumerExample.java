@@ -8,6 +8,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.RangeAssignor;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ public class KafkaConsumerExample {
 		props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); // none/latest/earliest 
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "my-java-group"); 
 		
-		
+		 
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props); 
 		
 		consumer.subscribe(Arrays.asList("ibm-second-topic"));

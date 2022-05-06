@@ -31,10 +31,10 @@ public class KafkaProducerMultipleMessageExample {
 		KafkaProducer<String, String> producer = new KafkaProducer<String, String>(prop); 
 		
 		
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<100; i++) {
 		
 		ProducerRecord<String, String> producerRecord = 
-				new ProducerRecord<String, String>("ibm-second-topic", "Hello World " + i); 
+				new ProducerRecord<String, String>("ibm-second-topic", "HELLO WORLD " + i); 
 		
 		
 		// if you want to send the data to particular partition 

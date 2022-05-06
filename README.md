@@ -462,10 +462,40 @@ and put a value called 1 and similarly 2,3 for other zookeeper files
 # Day 3 
 
 
-- Pull data from db and give it to consumer 
-- Start Kafka Without Zookeeper 
-- Working with Wikimedia - consuming large data 
-- Rebalancing with consumers - Java 
-- Metrics with Kafka 
-- spring boot application with kafka 
-- run docker with kafka 
+- [x] Pull data from db and give it to consumer 
+- [x] Start Kafka Without Zookeeper 
+    > .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+    
+    > start kafka 
+
+    > .\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic topic1
+
+    > kafka-storage.sh random-uuid 
+    
+    > kafka-storage.sh format -t random-uuid -c config/kraft/server.properties
+    
+    > kafka-server-start.sh config/kraft/server.properties
+
+    > kafka-topics.sh --bootstrap-server localhost:9092 --create --topic firs-topic 
+
+    > start your producer 
+
+    > start your consumer 
+
+- [ ] Rebalancing with consumers - Java 
+    - Partition Rebalance 
+        - you move the partitions between consumers then rebalancing shall happen 
+        - resassignemnt of partitions should have i.e., it should and rejoin 
+        - on the fly we may have more partitions coming in 
+        - Eager Reblancing 
+            - all the consumers stop, give us there membership with partitions 
+            - then they rejoin the consumer group 
+            - even in ths short time all consumers a paused which we dont like nor we want 
+            > 	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+        - incremental Reblancing 
+            - reassigns a small subset from the partitions 
+            - and it does not stop the reading from partitions 
+- [ ] Working with Wikimedia - consuming large data 
+- [ ] Metrics with Kafka 
+- [ ] spring boot application with kafka 
+- [ ] run docker with kafka 
