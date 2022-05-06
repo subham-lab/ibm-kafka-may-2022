@@ -496,6 +496,16 @@ and put a value called 1 and similarly 2,3 for other zookeeper files
             - reassigns a small subset from the partitions 
             - and it does not stop the reading from partitions 
 - [ ] Working with Wikimedia - consuming large data 
+    - GET - url 
+    - POST 
+    - PUT 
+    - DELETE 
+    -open api spec 
+        - 
+
+```
+        {"$schema":"/mediawiki/recentchange/1.0.0","meta":{"uri":"https://www.wikidata.org/wiki/Q39778840","request_id":"4a3f998e-7c05-4607-8269-0180792e8f10","id":"1efc048e-1660-4c2b-a1f2-7689ca822477","dt":"2022-05-06T09:14:37Z","domain":"www.wikidata.org","stream":"mediawiki.recentchange","topic":"eqiad.mediawiki.recentchange","partition":0,"offset":3842352781},"id":1684264481,"type":"edit","namespace":0,"title":"Q39778840","comment":"/* wbsetdescription-set:1|en */ scientific article published on August 1, 1976, Modify PubMed ID: 133707 citation data [[User:Cewbot/log/20210701/problematic articles|from NCBI, Europe PMC and CrossRef]]","timestamp":1651828477,"user":"Cewbot","bot":true,"minor":false,"patrolled":true,"length":{"old":31675,"new":31703},"revision":{"old":1633165829,"new":1633165833},"server_url":"https://www.wikidata.org","server_name":"www.wikidata.org","server_script_path":"/w","wiki":"wikidatawiki","parsedcomment":"<span dir=\"auto\"><span class=\"autocomment\">Changed English description: </span></span> scientific article published on August 1, 1976, Modify PubMed ID: 133707 citation data <a href=\"/wiki/User:Cewbot/log/20210701/problematic_articles\" title=\"User:Cewbot/log/20210701/problematic articles\">from NCBI, Europe PMC and CrossRef</a>"}
+        ```
 - [ ] Metrics with Kafka 
 - [ ] spring boot application with kafka 
 - [ ] run docker with kafka 
